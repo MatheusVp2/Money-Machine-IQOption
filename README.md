@@ -11,5 +11,4 @@
 
 - Arquivo trader.txt, formatado CSV, não pode ter espaço entre os pontos e virgulas e as informações !
 
--- 15;AUDCAD-OTC;21:00:00;PUT
--- 15;AUDCAD-OTC;21:00:00;PUT
+- 15;AUDCAD-OTC;21:00:00;PUT
