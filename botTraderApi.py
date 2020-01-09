@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -52,6 +53,12 @@ def getHoraNow():
 	hora = hora.strftime( '%H:%M:%S' )
 	return hora
 
+# VERIFICA SE O HORARIO JA PASSOU
+def  verificaHoraPassada(horaAgora, horaEntrada):
+	'''
+		VERIFICA SE O HORARIO JA PASSOU = (horaAgora, horaEntrada)
+	'''
+	return  (datetime.strptime(horaEntrada, f) - datetime.strptime(horaAgora, f)).total_seconds()
 
 # FUNÇÃO PARA VOLTAR A HORA E VERIFICAR O ATIVO 30 SEGUNDOS ANTES
 def timeVerificaAtivo(timeEntrada):
@@ -67,7 +74,7 @@ def timeVerificaAtivo(timeEntrada):
 		formato = "%H:%M"
 	# LOGICA PARA VOLTA DO HORARIO VERIFICADOR
 	cHora     = datetime.strptime( timeEntrada , formato )
-	vHora     = cHora - timedelta(seconds=30)
+	vHora     = cHora - timedelta(seconds=15)
 	timeAtivo = vHora.strftime( '%H:%M:%S' )
 	return timeAtivo
 
@@ -89,14 +96,14 @@ def delayEntrada(delay, timeEntrada):
 		cHora       = datetime.strptime( timeEntrada , formato )
 		timeEntrada = cHora.strftime( '%H:%M:%S' )
 		return timeEntrada
-	elif delay > 0 and delay <= 15:
+	elif delay > 0 and delay <= 5:
 		cHora       = datetime.strptime( timeEntrada , formato )
 		vHora       = cHora - timedelta(seconds=delay)
 		timeEntrada = vHora.strftime( '%H:%M:%S' )
 		return timeEntrada
 	else:
 		cHora       = datetime.strptime( timeEntrada , formato )
-		vHora       = cHora - timedelta(seconds=15)
+		vHora       = cHora - timedelta(seconds=5)
 		timeEntrada = vHora.strftime( '%H:%M:%S' )
 		return timeEntrada
 
@@ -123,3 +130,6 @@ class CFG():
 
 	def getDinheiro(self):
 		return self.config["ENTRADA"]["VALOR"]
+
+	def getGale(self):
+		return self.config["ENTRADA"]["GALE"]
