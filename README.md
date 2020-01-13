@@ -1,7 +1,6 @@
 # Money-Machine-IQOption
 
 - Link : https://github.com/Lu-Yi-Hsun/iqoptionapi
-- LINK : https://github.com/andrewcooke/simple-crypt
 
 ## CONTA TESTE
 
