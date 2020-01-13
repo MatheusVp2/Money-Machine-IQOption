@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -58,7 +57,7 @@ def  verificaHoraPassada(horaAgora, horaEntrada):
 	'''
 		VERIFICA SE O HORARIO JA PASSOU = (horaAgora, horaEntrada)
 	'''
-	return  (datetime.strptime(horaEntrada, f) - datetime.strptime(horaAgora, f)).total_seconds()
+	return  (datetime.strptime(horaEntrada, '%H:%M:%S') - datetime.strptime(horaAgora, '%H:%M:%S')).total_seconds()
 
 # FUNÇÃO PARA VOLTAR A HORA E VERIFICAR O ATIVO 30 SEGUNDOS ANTES
 def timeVerificaAtivo(timeEntrada):
@@ -74,7 +73,7 @@ def timeVerificaAtivo(timeEntrada):
 		formato = "%H:%M"
 	# LOGICA PARA VOLTA DO HORARIO VERIFICADOR
 	cHora     = datetime.strptime( timeEntrada , formato )
-	vHora     = cHora - timedelta(seconds=15)
+	vHora     = cHora - timedelta(seconds=12)
 	timeAtivo = vHora.strftime( '%H:%M:%S' )
 	return timeAtivo
 
@@ -133,3 +132,9 @@ class CFG():
 
 	def getGale(self):
 		return self.config["ENTRADA"]["GALE"]
+
+	def getQtdGale(self):
+		return self.config["ENTRADA"]["QTDGALE"]
+
+	def getGaleMult(self):
+		return self.config["ENTRADA"]["MULTGALE"]
