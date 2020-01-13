@@ -48,7 +48,7 @@ class LicencaConf():
 	def __init__(self):
 
 		file     = "./licenca.key"
-		chaveKey = b'JTcGUnRGzP12ALWeQuif-YAu4yWo0DNbHtgTwHHanCQ='
+		chaveKey = b'' #No Arquivvo Local
 
 		with open(file, 'rb') as f:
 		    data = f.read()
