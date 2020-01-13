@@ -86,6 +86,7 @@ if startBot == "S" or startBot == "SIM":
 		action   = go[3].lower()
 
 		while True:
+
 			hora = getHoraNow()
 			sys.stdout.write("\r" + f"{ getHoraNow() } - |-----| Aguardando Tempo |-----| ")
 			if verificaHoraPassada( hora, btime ) < 0:
@@ -97,7 +98,7 @@ if startBot == "S" or startBot == "SIM":
 				break
 
 			if hora == timeVerificaAtivo( btime ):
-				print()
+				print('\n')
 				break
 			time.sleep(1)
 
@@ -111,6 +112,7 @@ if startBot == "S" or startBot == "SIM":
 			moedaAtiva = False
 
 		if moedaAtiva:
+
 			print()
 			print(f"{ getHoraNow() } - |-----| Aguardando Entrada |-----| ")
 			print(f"{ getHoraNow() } - |-----| Tempo: {duration} - Moeda: {ativo} - Tempo: {btime} - Ação: {action.upper()} |-----| ")
@@ -121,7 +123,7 @@ if startBot == "S" or startBot == "SIM":
 				hora = getHoraNow()
 				sys.stdout.write("\r" + f"{ getHoraNow() } - |-----| Aguardando Tempo |-----| ")
 				if hora == btime:
-					print()
+					print('\n')
 					break
 				time.sleep(1)
 
@@ -147,7 +149,7 @@ if startBot == "S" or startBot == "SIM":
 
 			while (galeAtivo and winORloose and bGale <= qtdGale):
 				print()
-				print("Entrando com Gale : ", i)
+				print("Entrando com Gale : ", go)
 				print("Valor : ", vGale * galeMultiplicador)
 				print()
 
@@ -174,7 +176,11 @@ if startBot == "S" or startBot == "SIM":
 				if winORloose == True:
 					vGale = vGale * galeMultiplicador
 					bGale +=1
-		
+		else:
+			print()
+			print(f"{ getHoraNow() } - |-----| Ativo não esta Aberto {ativo} |-----| ")
+			print()
+
 		nextEntrada += 1
 		if nextEntrada >= qtdEntradas:
 			print('\n')
