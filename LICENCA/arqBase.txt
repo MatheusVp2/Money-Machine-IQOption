@@ -1,0 +1,6 @@
+{ 
+	'NOME'    : 'Marcus Freire',
+	'EMAIL'   : 'idealsolutions@outlook.com', 
+	'DATAEXP' : '01/01/2021 23:59:59',
+	'VERSION' : '1.0.0 BETA'
+}

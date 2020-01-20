@@ -1,0 +1,42 @@
+##### Machine Money #####
+
+|-----| Instruções |-----|
+
+
+|-----| Arquivo Config.ini |-----|
+
+Todas as informações da conta para o bot acessar a IQOPTION
+Lembrar que sua conta não pode ter autenticação por SMS se não ira logar o bot !
+
+Campo de Conta
+
+EMAIL = Informar seu email da iqoption, lembrando que o informado e o mesmo da licenca !
+SENHA = Informar a senha de acesso a iqoption, para que o bot possa fazer as entradas
+TIPO  = Informar o tipo na conta ( real ou demo ), que o bot era operar !
+
+Campo de Entrada
+
+VALOR    = Informar o valor das entradas do bot !
+GALE     = Informar para ativar o MartinGale ( on ou off ) !
+QTD      = Informar a quantidade de gale !
+MULTGALE = Informar quanto ira multiplicar o valor da entrada para o MartinGale !
+
+
+|-----| Arquivo trader.txt |-----|
+Lembrando caso tenha gale, verifique o tempo entre elas, pois apos a entrada ele fica verificando o resultado
+podendo assim passar o tempo da proxima entrada !
+
+O padrão de informação do arquivo de entradas e o exemplo
+
+Exemplo : 1;AUDUSD;02:17:00;PUT
+Exempli : TIME;ATIVO;HORA;ACAO
+Onde observar se ha espaços entre os ;, não podera haver espaço !
+
+TIME  = TEMPO DE DURAÇÂO DA Entrada
+ATIVO = QUAL PAR DE MOEDA OPERAR
+HORA  = QUAL HORARIO FAZER A Entrada (hora:minuto:segundo)
+ACAO  = CALL ou PUT 
+
+
+
+ 
