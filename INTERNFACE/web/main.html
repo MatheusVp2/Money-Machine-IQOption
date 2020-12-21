@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<title>Hello, World!</title>
+	<title>Money Machine</title>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -15,15 +15,82 @@
 		<script type="text/javascript" src="/eel.js"></script>
 
 		<script type="text/javascript">
-		
+
+			async function readInfo(){
+				
+				var conta = await eel.getAllInfo('CONTA')();
+				var entrada = await eel.getAllInfo('ENTRADA')();
+
+				console.log(conta)
+
+				$('#email').val( conta.email )
+				$('#password').val( conta.senha )
+
+				if (conta.tipo.toUpperCase() == "REAL"){
+					var radioAccReal = document.getElementById("accReal");
+					radioAccReal.checked = true
+				}else{
+					var radioAccDemo = document.getElementById("accDemo");
+					radioAccDemo.checked = true
+				}
+
+				M.updateTextFields();
+			}
+
+			async function saveInfo(){
+				
+				var conta = await eel.getAllInfo('CONTA')();
+				var entrada = await eel.getAllInfo('ENTRADA')();
+
+				conta.email = $('#email').val()
+				conta.senha = $('#password').val()
+
+				var radioAccReal = document.getElementById("accReal");
+				if(radioAccReal.checked){
+					conta.tipo  = "REAL"
+				}else{
+					conta.tipo  = "DEMO"
+				}
+
+				eel.saveInfo('CONTA',conta)();
+				eel.saveInfo('ENTRADA',entrada)();
+
+				alert('Informações Salvas !')
+				
+				window.location.href = "./main.html"
+
+			}
 		
 		</script>
 
+		<style type="text/css">
+
+		</style>
+
   </head>
 
-  <body>
-
+  <body onload="readInfo()">
+  	<br>
 	<div class="container-fluid">
+		<div class="row">
+			
+			<div class="col s12 m12 l12 d-flex justify-content-center">
+
+				<i class="medium material-icons prefix">desktop_windows</i>
+				<label></label>
+				<h4 class="" >Machine Money</h4>
+				<label></label>
+				<i class="medium material-icons prefix">desktop_windows</i>
+				
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="progress">
+		  		<div class="indeterminate"></div>
+		  	</div>
+		</div>
 
 		<div class="row">
 
@@ -35,33 +102,82 @@
 						<div class="collapsible-body">
 							
 							<div class="row">
-								<form class="col s12 m12 l12">
+								<div class="col s12 m12 l12">
 									<div class="input-field">
 										<i class="material-icons prefix">email</i>
 										<input id="email" type="email" class="validate" autocomplete="off">
-										<label for="email">Email</label>
+										<label class="active" for="email">Email</label>
 									</div>
 									<div class="input-field">
-										<i class="material-icons prefix">vpn_key</i>
+										<i class="material-icons prefix">https</i>
 										<input id="password" type="password" class="validate">
-										<label for="password">Password</label>
+										<label class="active" for="password">Password</label>
 									</div>
-								</form>
+									<p>
+									  <label>
+										<input id="accReal" name="group1" type="radio"/>
+										<span class="txtradio">Conta Real</span>
+									  </label>
+									  <label class="p-3"></label>
+									  <label>
+										<input id="accDemo" name="group1" type="radio" />
+										<span class="txtradio">Conta Demo</span>
+									  </label>
+									</p>
+								</div>
 							</div>
 
 						</div>
 					</li>
 					<li>
-						<div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-						<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						<div class="collapsible-header"><i class="material-icons">assignment</i>Entrada</div>
+						<div class="collapsible-body">
+
+							<!-- <div class="row">
+								<div class="col s12 m12 l12">
+									<p class="range-field">
+									  <input type="number" step='0.01' id="test5" min="0" max="100" />
+									</p>
+								</div>
+							</div> -->
+
+							
+						<div class="row">
+							<div class="col s12 m12 l12">
+								<span class="">Conta de Moeda ( REAL R$ )  Min e 2.00</span><br>
+								<span class="">Conta de Moeda ( DOLAR $ )  Min e 1.00</span>
+								<div class="input-field">
+							 		<input id="teste" type="number" value="1.00" step="0.25" min="1.00" autocomplete="off">
+								 	<span class="helper-text" >VALOR DA ENTRADA</span>
+								</div>
+							</div>
+						</div>
+
+						</div>
 					</li>
+
 					<li>
-						<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-						<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						<div class="collapsible-header"><i class="material-icons">error</i>Martingale</div>
+						<div class="collapsible-body">
+
+
+
+						</div>
+					</li>
+
+					<li class="">
+						
+						<div class="collapsible-header"><i class="material-icons">pause_circle_filled</i>Stop Gain | Stop Loss</div>
+						<div class="collapsible-body">
+
+
+
+						</div>
+
 					</li>
 				</ul>
 				<div class="col s12 m12 l12 d-flex justify-content-center">
-					<a class="waves-effect waves-light btn" style="width: 200px;"><i class="material-icons left">save</i>Salvar</a>
+					<a onclick="saveInfo()" class="waves-effect waves-light btn" style="width: 200px;"><i class="material-icons left">save</i>Salvar</a>
 				</div>
 				
 			</div>
@@ -85,6 +201,7 @@
 	<script>
 		$(document).ready(function(){
 			$('.collapsible').collapsible();
+
 		});
 	</script>
 		
